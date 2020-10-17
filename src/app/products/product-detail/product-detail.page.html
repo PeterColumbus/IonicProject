@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/products"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detail Product</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid style="max-width: 500px">
+    <ion-row>
+      <ion-col size="12">
+        <ion-card lines="none">
+          <ion-card-content>
+            <ion-img
+              [src]="loadedProduct.foto"
+              style="height: 300px; object-fit: cover; margin-bottom: 10px"
+            ></ion-img>
+
+            <ion-label>
+              <p class="productDetailTitle" style="color: limegreen">{{loadedProduct.merek+" "+loadedProduct.model}}</p>
+              <p class="productDetailValue">
+                {{loadedProduct.harga | currency:"Rp. ":true:"1.2" }}
+              </p>
+              <p class="productDetailValue">Tersedia: {{loadedProduct.stok}}</p>
+              <p class="productDetailSubTitle">Deskripsi Product</p>
+              <p class="productDetailValue">Jenis: {{loadedProduct.jenis}}</p>
+              <p class="productDetailValue">Merek: {{loadedProduct.merek}}</p>
+            </ion-label>
+
+            <ion-label *ngIf="loadedProduct.jenis == 'CPU'">
+              <p class="productDetailValue">
+                Base Clock: {{loadedProduct.baseClock}} GHz
+              </p>
+              <p class="productDetailValue">
+                Boost Clock: {{loadedProduct.boostClock}} GHz
+              </p>
+              <p class="productDetailValue">
+                Core / Thread: {{loadedProduct.core}} Core /
+                {{loadedProduct.thread}} Thread
+              </p>
+            </ion-label>
+            <ion-label *ngIf="loadedProduct.jenis == 'RAM'">
+              <p class="productDetailValue">
+                Speed: {{loadedProduct.speed}} MHz
+              </p>
+              <p class="productDetailValue">
+                Size: {{loadedProduct.size}} GB
+              </p>
+            </ion-label>
+            <ion-label *ngIf="loadedProduct.jenis == 'MB'">
+              <p class="productDetailValue">
+                Chipset: {{loadedProduct.chipset}}
+              </p>
+              <p class="productDetailValue">
+                Target Prosesor: {{loadedProduct.target}}
+              </p>
+            </ion-label>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

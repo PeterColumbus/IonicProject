@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="productsSidebar"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Home</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="changeView()">
+        <ion-icon name="grid-outline" *ngIf="viewList == true"></ion-icon>
+        <ion-icon name="list-outline" *ngIf="viewList == false"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-sm="10" offset-sm="1">
+        <ion-list *ngIf="viewList == true">
+          <ion-card
+            *ngFor="let product of products"
+            [routerLink]="['./', product.id]"
+          >
+            <ion-item *ngIf="product.stok != 0" lines="none">
+              <!-- <ion-card-content> -->
+              <ion-thumbnail slot="start" class="imageSize1">
+                <ion-img [src]="product.foto"></ion-img>
+              </ion-thumbnail>
+              <ion-label>
+                <p class="productTitle" style="color: limegreen">{{product.merek+" "+product.model}}</p>
+                <p class="productSubTitle">{{product.jenis}}</p>
+                <p class="productValue">
+                  {{product.harga | currency:"Rp. ":true:"1.2" }}
+                </p>
+                <p class="productValue">Tersedia: {{product.stok}}</p>
+              </ion-label>
+              <!-- </ion-card-content> -->
+            </ion-item>
+          </ion-card>
+        </ion-list>
+        <ion-grid *ngIf="viewList == false" style="max-width: 940px">
+          <ion-row>
+            <ion-col
+              size-lg="5"
+              size="6"
+              offset-lg="0.5"
+              *ngFor="let product of products"
+              [class.hide]="product.stok == 0"
+            >
+              <ion-card
+                [routerLink]="['./', product.id]"
+                *ngIf="product.stok != 0"
+                lines="none"
+              >
+                <ion-card-content>
+                  <ion-img
+                    [src]="product.foto"
+                    style="
+                      height: 180px;
+                      object-fit: cover;
+                      margin-bottom: 10px;
+                    "
+                  ></ion-img>
+
+                  <ion-label>
+                    <p class="productTitle" style="color: limegreen">{{product.merek+" "+product.model+" ("+product.jenis+")"}}</p>
+                    <p class="productValue">
+                      {{product.harga | currency:"Rp. ":true:"1.2" }}
+                    </p>
+                    <p class="productValue">Tersedia: {{product.stok}}</p>
+                  </ion-label>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

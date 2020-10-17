@@ -1,0 +1,35 @@
+<ion-app>
+  <ion-menu side="start" menuId="productsSidebar">
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle menu="productsSidebar">
+          <ion-item routerLink="/products">
+            <ion-icon name="storefront-outline" slot="start"></ion-icon>
+            <ion-label>Home</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle menu="productsSidebar">
+          <ion-item routerLink="/admin">
+            <ion-icon name="person-outline" slot="start"></ion-icon>
+            <ion-label>Admin</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle menu="productsSidebar">
+          <ion-item routerLink="/about-me">
+            <ion-icon name="information-outline" slot="start"></ion-icon>
+            <ion-label>About Me</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+    <ion-footer>
+      <ion-menu-toggle menu="productsSidebar">
+        <ion-item>
+          <ion-icon name="log-out-outline" slot="start"></ion-icon>
+          <ion-label>Exit</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-footer>
+  </ion-menu>
+  <ion-router-outlet main></ion-router-outlet>
+</ion-app>

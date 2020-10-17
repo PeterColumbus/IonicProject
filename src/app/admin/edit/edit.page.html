@@ -1,0 +1,179 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/admin"></ion-back-button>
+    </ion-buttons>
+    <ion-title>edit</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="10" size-lg="8" offset="1" offset-lg="2">
+        <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+          <ion-list>
+            <ion-item>
+              <ion-label position="floating">Url Foto</ion-label>
+              <ion-input
+                type="text"
+                ngModel="{{ product.foto }}"
+                name="foto"
+                #fotoCtrl="ngModel"
+              ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Jenis</ion-label>
+              <ion-select
+                ngModel="{{ product.jenis }}"
+                required
+                name="jenis"
+                #jenisCtrl="ngModel"
+                placeholder="Select One"
+                [disabled]="true"
+              >
+                <ion-select-option value="CPU">CPU</ion-select-option>
+                <ion-select-option value="RAM">RAM</ion-select-option>
+                <ion-select-option value="Motherboard">Mother Board</ion-select-option>
+                <ion-select-option value="GPU">GPU</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Merek</ion-label>
+              <ion-input
+                type="text"
+                ngModel="{{ product.merek }}"
+                name="merek"
+                required
+                #merekCtrl="ngModel"
+              ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Model</ion-label>
+              <ion-input
+                type="text"
+                ngModel="{{ product.model }}"
+                name="model"
+                required
+                #modelCtrl="ngModel"
+              ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Harga</ion-label>
+              <ion-input
+                type="number"
+                ngModel="{{ product.harga }}"
+                name="harga"
+                required
+                #hargaCtrl="ngModel"
+              ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Stok</ion-label>
+              <ion-input
+                type="number"
+                ngModel="{{ product.stok }}"
+                name="stok"
+                required
+                #stokCtrl="ngModel"
+              ></ion-input>
+            </ion-item>
+            <ion-item
+              lines="none"
+              *ngIf="jenisCtrl.valid && jenisCtrl.value != 'GPU'"
+            >
+              <ion-label class="productDetailTitle"> Detail Produk </ion-label>
+            </ion-item>
+            <ion-item *ngIf="jenisCtrl.value == 'CPU'">
+              <ion-label position="floating">Base Clock</ion-label>
+              <ion-input
+                type="number"
+                ngModel="{{ product.baseClock }}"
+                name="baseClock"
+                required
+                #baseClockCtrl="ngModel"
+              ></ion-input>
+            </ion-item>
+            <ion-item *ngIf="jenisCtrl.value == 'CPU'">
+              <ion-label position="floating">Boost Clock</ion-label>
+              <ion-input
+                type="number"
+                ngModel="{{ product.boostClock }}"
+                name="boostClock"
+                required
+                #boostClockCtrl="ngModel"
+              ></ion-input>
+            </ion-item>
+            <ion-item *ngIf="jenisCtrl.value == 'CPU'">
+              <ion-label position="floating">Core Count</ion-label>
+              <ion-input
+                type="number"
+                ngModel="{{ product.core }}"
+                name="core"
+                required
+                #coreCtrl="ngModel"
+              ></ion-input>
+            </ion-item>
+            <ion-item *ngIf="jenisCtrl.value == 'CPU'">
+              <ion-label position="floating">Thread Count</ion-label>
+              <ion-input
+                type="number"
+                ngModel="{{ product.thread }}"
+                name="thread"
+                required
+                #threadCtrl="ngModel"
+              ></ion-input>
+            </ion-item>
+            <ion-item *ngIf="jenisCtrl.value == 'RAM'">
+              <ion-label position="floating">Speed</ion-label>
+              <ion-input
+                type="number"
+                ngModel="{{ product.speed }}"
+                name="speed"
+                required
+                #speedCtrl="ngModel"
+              ></ion-input>
+            </ion-item>
+            <ion-item *ngIf="jenisCtrl.value == 'RAM'">
+              <ion-label position="floating">Size</ion-label>
+              <ion-input
+                type="number"
+                ngModel="{{ product.size }}"
+                name="size"
+                required
+                #sizeCtrl="ngModel"
+              ></ion-input>
+            </ion-item>
+            <ion-item *ngIf="jenisCtrl.value == 'MB'">
+              <ion-label position="floating">Chipset</ion-label>
+              <ion-input
+                type="text"
+                ngModel="{{ product.chipset }}"
+                name="chipset"
+                required
+                #chipsetCtrl="ngModel"
+              ></ion-input>
+            </ion-item>
+            <ion-item *ngIf="jenisCtrl.value == 'Motherboard'">
+              <ion-label position="floating">Target Prossesor</ion-label>
+              <ion-input
+                type="text"
+                ngModel="{{ product.target }}"
+                name="target"
+                required
+                #targetCtrl="ngModel"
+              ></ion-input>
+            </ion-item>
+          </ion-list>
+          <ion-button
+            color="primary"
+            type="submit"
+            expand="block"
+            [disabled]="!form.valid"
+            >Edit Product</ion-button
+          >
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

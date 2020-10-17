@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="productsSidebar"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>admin</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button routerLink="/admin/create"
+        ><ion-icon name="add" slot="icon-only"></ion-icon
+      ></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-sm="10" offset-sm="1">
+        <ion-list>
+          <ion-card *ngFor="let product of products">
+            <ion-item-sliding #slidingItem>
+              <ion-item-options side="start">
+                <ion-item-option (click)="openEditForm(product.id)">
+                  <ion-icon name="create" slot="icon-only"></ion-icon>
+                </ion-item-option>
+              </ion-item-options>
+              <ion-item lines="none" #slidingItem>
+                <ion-thumbnail slot="start" class="imageSize1">
+                  <ion-img [src]="product.foto"></ion-img>
+                </ion-thumbnail>
+                <ion-label>
+                  <p class="productTitle" style="color: limegreen">{{product.merek +" "+product.model}}</p>
+                  <p class="productSubTitle">{{product.jenis}}</p>
+                  <p class="productValue">
+                    {{product.harga | currency:"Rp. ":true:"1.2" }}
+                  </p>
+                  <p class="productValue">Tersedia: {{product.stok}}</p>
+                </ion-label>
+              </ion-item>
+              <ion-item-options side="end">
+                <ion-item-option
+                  (click)="parseDelete(product.id)"
+                  color="danger"
+                >
+                  <ion-icon name="trash" slot="icon-only"></ion-icon>
+                </ion-item-option>
+              </ion-item-options>
+            </ion-item-sliding>
+          </ion-card>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
